@@ -6,7 +6,7 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:36:29 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/30 13:26:50 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/10/30 16:24:42 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,11 @@ typedef struct s_map
 
 void place_piece(t_map *map, t_map *piece);
 void print_map(t_map *map);
+void get_last(t_map *oldmap, t_map *map);
+void get_player(char *str, t_map *map);
+t_map *get_piece(void);
+t_map *get_map(void);
+void free_map(t_map *map);
+void print_pos(t_pos *res);
 
 #endif

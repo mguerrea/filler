@@ -6,7 +6,7 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 12:39:28 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/30 14:36:57 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/10/30 16:24:46 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		check_place(t_map *map, t_map *piece, int i, int j)
 
 	if ((ret = overlap(map, piece, i, j)) != 1)
 	{
-	//	dprintf(2, "ret = %d\n", ret);
 		return (0);
 	}
 	return (1);
@@ -69,27 +68,11 @@ void is_better(int i, int j, t_pos **res, t_map *map)
 	}
 	else if (*res == NULL)
 	{
-	//	dprintf(2, "ELSE\n");
 		*res = (t_pos *)malloc(sizeof(t_pos) * 1);
 		(*res)->x = j;
 		(*res)->y = i;
-	//	dprintf(2, "res x = %d\t res y = %d\n", (*res)->x, (*res)->y);
 	}
 	
-}
-
-void print_pos(t_pos *res)
-{
-	if (res == NULL)
-		ft_putstr("0 0\n");
-	else
-	{
-		ft_putnbr(res->y);
-		ft_putchar(' ');
-		ft_putnbr(res->x);
-		ft_putchar('\n');
-	}
-	free(res);
 }
 
 void	place_piece(t_map *map, t_map *piece)
