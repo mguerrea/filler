@@ -6,13 +6,13 @@
 #    By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/19 14:03:15 by jgourdin          #+#    #+#              #
-#    Updated: 2019/09/30 12:56:02 by mguerrea         ###   ########.fr        #
+#    Updated: 2019/10/30 12:05:41 by mguerrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = test.filler
 
-SRC_NAME = main.c place.c
+SRC_NAME = main.c place.c utils.c
 
 INC_NAME = filler.h
 

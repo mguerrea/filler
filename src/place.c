@@ -6,13 +6,11 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 12:39:28 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/03 15:28:46 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:36:57 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-// TO DO : CHECK FIRST PLAYER
 
 int overlap(t_map *map, t_map *piece, int i, int j)
 {
@@ -54,29 +52,64 @@ int		check_place(t_map *map, t_map *piece, int i, int j)
 	return (1);
 }
 
-int		place_piece(t_map *map, t_map *piece)
+void is_better(int i, int j, t_pos **res, t_map *map)
+{
+	int norm2;
+	int norm1;
+
+	norm2 = (map->last.x - j)*(map->last.x - j) + (map->last.y - i)*(map->last.y - i);
+	if (*res != NULL && map->last.x != -1)
+	{
+		norm1 = ((*res)->x - j)*((*res)->x - j) + ((*res)->y - i)*((*res)->y - i);
+		if (norm2 < norm1)
+		{
+			(*res)->x = j;
+			(*res)->y = i;
+		}
+	}
+	else if (*res == NULL)
+	{
+	//	dprintf(2, "ELSE\n");
+		*res = (t_pos *)malloc(sizeof(t_pos) * 1);
+		(*res)->x = j;
+		(*res)->y = i;
+	//	dprintf(2, "res x = %d\t res y = %d\n", (*res)->x, (*res)->y);
+	}
+	
+}
+
+void print_pos(t_pos *res)
+{
+	if (res == NULL)
+		ft_putstr("0 0\n");
+	else
+	{
+		ft_putnbr(res->y);
+		ft_putchar(' ');
+		ft_putnbr(res->x);
+		ft_putchar('\n');
+	}
+	free(res);
+}
+
+void	place_piece(t_map *map, t_map *piece)
 {
 	int i;
 	int j;
+	t_pos *res;
 	
-	i = 0;
+	i = 0 - piece->x;
+	res = NULL;
 	while (i < map->y)
 	{
 		j = 0 - piece->y;
 		while (j < map->x)
 		{
 			if (check_place(map, piece, i, j))
-			{
-	//			dprintf(2, "i = %d\tj = %d\n", i, j);
-				ft_putnbr(i);
-				ft_putchar(' ');
-				ft_putnbr(j);
-				ft_putchar('\n');
-				return (1);
-			}
+				is_better(i, j, &res, map);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	print_pos(res);
 }

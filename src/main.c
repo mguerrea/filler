@@ -6,7 +6,7 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:08:28 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/03 15:16:41 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:36:41 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_map *get_map()
 	i++;
 	map->x = ft_atoi(str + i);
 	free(str);
-	//	dprintf(2, "x = %d\ty = %d\n", map->x, map->y);
 	map->tab = malloc(sizeof(char *) * (map->y + 1));
 	i = -1;
 	get_next_line(0, &str);
@@ -89,40 +88,81 @@ void get_player(char *str, t_map *map)
 		}
 }
 
+/*void get_last(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	dprintf(2, RED "map they = %c\n" RESET, map->they);
+	print_map(map);
+	while (i < map->y)
+	{
+		j = 0;
+		while (j < map->x)
+		{
+			if (map->tab[i][j] == map->they)
+			{
+				dprintf(2, "jpp\n");
+				map->last.x = j;
+				map->last.y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+
+}*/
+
+void get_last(t_map *oldmap, t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	if (oldmap)
+	{
+	while (i < map->y)
+	{
+		j = 0;
+		while (j < map->x)
+		{
+			if (oldmap->tab[i][j] == '.' && map->tab[i][j] == map->they - 32)
+			{
+				map->last.x = j;
+				map->last.y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+	}
+	map->last.x = -1;
+	map->last.y = -1;
+}
+
 int main()
 {
 	t_map *map;
+	t_map *oldmap;
 	t_map *piece;
 	char *str;
-//	char me;
-//	char they;
 
 	str = NULL;
+	oldmap = NULL;
 	get_next_line(0, &str);
-	{
-/*		if (ft_strncmp(str, "$$$ exec p2 :", 12) == 0)
-		{
-			me = 'x';
-			they = 'o';
-		}
-		else
-		{
-			me = 'o';
-			they = 'x';
-		}
-		free(str);*/
-	}
 	while (1)
 	{
 		if (!(map = get_map()))
 			break;
-	//	map->me = me;
-	//	map->they = they;
 		get_player(str, map);
+		get_last(oldmap, map);
 		piece = get_piece();
-
-		if (place_piece(map, piece) == 0)
-			ft_putstr("0 0\n");
+		place_piece(map, piece);
+		// we have to free oldmap
+		oldmap = map;
 	}
 	ft_strdel(&str);
 }

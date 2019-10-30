@@ -248,8 +248,8 @@ class Plateau
 		for y in 0..(@piece_row - 1)
 			for x in 0..(@piece_col - 1)
 				if (piece_char(x, y) == '*')
-                    #@map_table[y + row][x + col] = char
-                    @map_table[y + row][x + col] = char.downcase
+                    @map_table[y + row][x + col] = char
+                    #@map_table[y + row][x + col] = char.downcase
 				end
 			end
 		end
