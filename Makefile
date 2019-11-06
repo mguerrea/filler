@@ -6,11 +6,11 @@
 #    By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/19 14:03:15 by jgourdin          #+#    #+#              #
-#    Updated: 2019/10/30 16:16:59 by mguerrea         ###   ########.fr        #
+#    Updated: 2019/11/06 15:26:31 by mguerrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test.filler
+NAME = mguerrea.filler
 
 SRC_NAME = main.c place.c utils.c get_elems.c
 
