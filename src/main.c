@@ -6,19 +6,19 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:08:28 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/30 16:20:01 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/11/09 12:55:41 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "filler.h"
 
-int main(void)
+int	main(void)
 {
-	t_map *map;
-	t_map *oldmap;
-	t_map *piece;
-	char *str;
+	t_map	*map;
+	t_map	*oldmap;
+	t_map	*piece;
+	char	*str;
 
 	str = NULL;
 	oldmap = NULL;
@@ -33,6 +33,7 @@ int main(void)
 			break ;
 		place_piece(map, piece);
 		free_map(oldmap);
+		free_map(piece);
 		oldmap = map;
 	}
 	ft_strdel(&str);

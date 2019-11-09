@@ -6,15 +6,15 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:15:22 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/30 16:16:42 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/11/09 12:47:48 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_map *get_size(t_map **elem, int i)
+t_map	*get_size(t_map **elem, int i)
 {
-	char *str;
+	char	*str;
 
 	if (get_next_line(0, &str) < 1)
 		return (NULL);
@@ -26,14 +26,14 @@ t_map *get_size(t_map **elem, int i)
 	(*elem)->x = ft_atoi(str + i);
 	ft_strdel(&str);
 	(*elem)->tab = malloc(sizeof(char *) * ((*elem)->y + 1));
-	return(*elem);
+	return (*elem);
 }
 
-t_map *get_map(void)
+t_map	*get_map(void)
 {
-	t_map *map;
-	char *str;
-	int i;
+	t_map	*map;
+	char	*str;
+	int		i;
 
 	if (get_size(&map, 8) == NULL)
 		return (NULL);
@@ -50,11 +50,11 @@ t_map *get_map(void)
 	return (map);
 }
 
-t_map *get_piece(void)
+t_map	*get_piece(void)
 {
-	char *str;
-	t_map *piece;
-	int i;
+	char	*str;
+	t_map	*piece;
+	int		i;
 
 	piece = NULL;
 	if (get_size(&piece, 6) == NULL)
@@ -71,21 +71,21 @@ t_map *get_piece(void)
 	return (piece);
 }
 
-void get_player(char *str, t_map *map)
+void	get_player(char *str, t_map *map)
 {
 	if (ft_strncmp(str, "$$$ exec p2 :", 12) == 0)
-		{
-			map->me = 'x';
-			map->they = 'o';
-		}
-		else
-		{
-			map->me = 'o';
-			map->they = 'x';
-		}
+	{
+		map->me = 'x';
+		map->they = 'o';
+	}
+	else
+	{
+		map->me = 'o';
+		map->they = 'x';
+	}
 }
 
-void get_last(t_map *oldmap, t_map *map)
+void	get_last(t_map *oldmap, t_map *map)
 {
 	int i;
 	int j;
@@ -93,19 +93,20 @@ void get_last(t_map *oldmap, t_map *map)
 	i = -1;
 	if (oldmap)
 	{
-	while (++i < map->y)
-	{
-		j = -1;
-		while (++j < map->x)
+		while (++i < map->y)
 		{
-			if (oldmap->tab[i][j] == '.' && map->tab[i][j] == map->they - 32)
+			j = -1;
+			while (++j < map->x)
 			{
-				map->last.x = j;
-				map->last.y = i;
-				return ;
+				if (oldmap->tab[i][j] == '.'
+					&& map->tab[i][j] == map->they - 32)
+				{
+					map->last.x = j;
+					map->last.y = i;
+					return ;
+				}
 			}
 		}
-	}
 	}
 	map->last.x = -1;
 	map->last.y = -1;

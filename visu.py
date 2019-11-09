@@ -17,7 +17,7 @@ def getPlayers():
 	global p1
 	global p2
 
-	while True: # While loop to skip VM's header (starting with the '#' character)
+	while True:
 		line = sys.stdin.readline()
 		if line.startswith("$"):
 			try:
@@ -25,7 +25,7 @@ def getPlayers():
 		 	except:
 				return False
 
-			sys.stdin.readline() # Skip one line to get the second player definition
+			sys.stdin.readline()
 			line = sys.stdin.readline()
 
 			try:
@@ -89,13 +89,12 @@ def prettyPrintGame():
 			sys.stderr.write("\x1b[2J\x1b[H")
 			# subprocess.call(["clear"])
 
-		# Replace VM's player characters by custom ones
-		line = line.replace(".", " ") # -> Empty spots
-		line = line.replace("o", p1Replacement).replace("O", p1Replacement) # -> First player pieces
-		line = line.replace("x", p2Replacement).replace("X", p2Replacement) # -> Second player pieces
+		line = line.replace(".", " ")
+		line = line.replace("o", p1Replacement).replace("O", p1Replacement)
+		line = line.replace("x", p2Replacement).replace("X", p2Replacement)
 
-		print (line) # Print the cutsom map
-		time.sleep(sleepDelay) # Wait a little while before refreshing the screen
+		print (line)
+		time.sleep(sleepDelay)
 	displayScore()
 
 def main():

@@ -6,13 +6,13 @@
 /*   By: mguerrea <mguerrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 12:03:42 by mguerrea          #+#    #+#             */
-/*   Updated: 2019/10/30 16:24:34 by mguerrea         ###   ########.fr       */
+/*   Updated: 2019/11/09 13:03:09 by mguerrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void print_map(t_map *map)
+void	print_map(t_map *map)
 {
 	int i;
 
@@ -24,7 +24,7 @@ void print_map(t_map *map)
 	}
 }
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	int i;
 
@@ -40,7 +40,7 @@ void free_map(t_map *map)
 	free(map);
 }
 
-void print_pos(t_pos *res)
+void	print_pos(t_pos *res)
 {
 	if (res == NULL)
 		ft_putstr("0 0\n");
